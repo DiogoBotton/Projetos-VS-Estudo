@@ -1,0 +1,90 @@
+@model RoleTOP_MVC.ViewModels.DashboardViewModel
+<main>
+        <p class="space"></p>
+        <section id="tabela">
+            <div class="titulo-adm">
+                <p>Gerenciamento de Eventos</p>
+            </div>
+            <table class="eventos">
+                <thead>
+                    <tr>
+                        <th>Nome/Empresa</th>
+                        <th>Data do Evento</th>
+                        <th>Status</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th class="aceitos">Eventos Aceitos:</th>
+                        <th class="recusados">Eventos Recusados:</th>
+                        <th class="pendentes">Eventos Pendentes:</th>
+                        <th class="cancelados">Eventos Cancelados:</th>
+                    </tr>
+                    <tr>
+                        <td>@Model.PedidosAprovados</td>
+                        <td>@Model.PedidosReprovados</td>
+                        <td>@Model.PedidosPendentes</td>
+                        <td>@Model.PedidosCancelados</td>
+
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var pedido in Model.Agendamentos)
+                    {
+                    <tr>
+                        <td>@pedido.Cliente.Email</td>
+                        <td>@pedido.DataDoAgendamento</td>
+                        <td>@pedido.StatusString</td>
+                        <td><a href='@Url.Action("Visualizar","Agendamento", new {id = @pedido.ID})'>Ver mais...</a></td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </section>
+
+        <p class="space"></p>
+
+        <section id="tabela2">
+            <div class="titulo-adm">
+                <p>Mensagem de usuários</p>
+            </div>
+            <table class="mensagens">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Data da Mensagem</th>
+                            <th>Ação</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                    <tr>
+                        <th class="aceitos">Mensagens respondidas:</th>
+                        <th class="pendentes">Mensagens sem resposta:</th>
+                    </tr>
+                    <tr>
+                        <td>@Model.MensagemRespondida</td>
+                        <td>@Model.MensagemNaoLida</td>
+                    </tr>
+                </tfoot>
+                    <tbody>
+                    @foreach (var msg in Model.Perguntas)
+                    {
+                        <tr>
+                            <td>@msg.Email</td>
+                            <td>@msg.DataDaMensagem</td>
+                            <td><a href='@Url.Action("Visualizar","Faq", new {id = @msg.ID})'>Visualizar</a></td>
+                        </tr>
+                    }
+                    </tbody>
+            </table>
+        </section>
+        <p class="divisoria-rodape"></p>
+        <div class="btn-minhaconta">
+            <p class="titulo-pedidos">Opções:</p>
+            <a asp-controller="Administrador" asp-action="Logoff" class="btn">Sair (logout)<i class="fas fa-angle-right"></i></a>
+        </div>
+
+        <p class="divisoria-rodape"></p>
+
+    </main>

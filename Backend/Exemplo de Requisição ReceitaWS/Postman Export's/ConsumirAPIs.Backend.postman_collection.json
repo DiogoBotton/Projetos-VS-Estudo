@@ -1,0 +1,43 @@
+{
+	"info": {
+		"_postman_id": "e1006d08-8e1b-4e08-bdaa-b39510327f63",
+		"name": "ConsumirAPIs.Backend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "RequisicaoExemploReceitaWS",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/Cnpj/receita/cnpj/24621641000121",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"Cnpj",
+						"receita",
+						"cnpj",
+						"24621641000121"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

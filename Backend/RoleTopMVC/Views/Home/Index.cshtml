@@ -1,0 +1,57 @@
+﻿@model RoleTOP_MVC.ViewModels.HomeViewModel
+<main>
+        <div id="sobrenos">
+            <p>Sobre nós</p>
+            <p> Em química e física, Teoria atômica ou teoria atómica é a teoria científica que afirma que a matéria é
+                constituída por unidades fundamentais chamadas átomos. Um átomo, de acordo com esta teoria, é uma
+                partícula extremamente pequena, porém não é infinitamente pequena.
+                A Teoria atômica havia sido proposta por filósofos, como Descartes, antes dela ter uma base
+                experimental. Havia, desde os tempos antigos, duas hipóteses sobre a composição da matéria: ou ela seria
+                formada por partículas que não poderiam ser mais divididas, ou não haveria nenhum limite à
+                divisibilidade da matéria. A primeira ideia costuma ser atribuída aos epicuristas, porém suas origens
+                podem ser ainda mais antigas. A cosmogenia de Demócrito se baseia nesta ideia, que ele derivou de
+                Leucipo. Segundo Daubeny, Mosco, um fenício que floresceu antes da Guerra de Troia, teria estas ideias,
+                assim como as mônadas de Pitágoras, cuja origem seria egípcia. Segundo Mr. Colebrooke, citado por
+                Daubeny, os hindus também tinham, no passado, uma teoria atômica.
+            </p>
+        </div>
+        <div class="programacao">
+            <p class="programacao-top">ProgramacAo</p>
+            <div class="gallery autoplay items-@Model.Programacao.Count">
+                @foreach (var item in Model.Programacao)
+                {
+                <div id="item-@item.ID" class="control-operator"></div>
+                }
+                
+                @foreach (var item in Model.Programacao)
+                {
+                    <figure class="item">
+                        <h1><a href='@Url.Action("Visualizar","Home", new {id = @item.ID})'><img src="@item.bannerURL" width="600px" height="300px"></a></h1>
+                    </figure>    
+                }
+
+                <div class="controls">
+                    @foreach (var item in Model.Programacao)
+                    {
+                    <a href="#item-@item.ID" class="control-button">.</a>
+                        
+                    }
+                </div>
+            </div>
+            <p class="programacao-bottom">Role tOp</p>
+        </div>
+        
+        <div id="tabela-precos">
+            <p>Estimativa de precos</p>
+            <img src="/Img/tabela-de-precos.svg">
+        </div>
+
+        <div id="localizacao">
+            <p>LocalizacAo</p>
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14631.441758630948!2d-46.646275746032714!3d-23.53752146705796!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb23619858bc7e63e!2sEscola%20SENAI%20de%20Inform%C3%A1tica!5e0!3m2!1spt-BR!2sbr!4v1567281677957!5m2!1spt-BR!2sbr"
+                frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+        </div>
+
+        <p class="divisoria-rodape"></p>
+    </main>
