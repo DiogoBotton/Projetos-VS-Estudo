@@ -1,0 +1,46 @@
+@model RoleTOP_MVC.ViewModels.UsuarioViewModel
+<main>
+        <p class="titulo-resumo">Olá, @Model.UsuarioNome !</p>
+        <p class="titulo-pedidos">Pedidos:</p>
+        <p class="divisoria-rodape"></p>
+        @if(Model.qtdAgendamentos > 0){
+            <section id="status-pedidos">
+            <h3>Status dos pedidos</h3>
+            <h5>Clique para visualizar e ter acesso às ações</h5>
+            <div id="painel">
+                <div class="box-status-pedidos aprovados">
+                    <a href='@Url.Action("Visualizar","Cliente", new {status = 1})'><h4>Aprovados</h4></a>
+                    <p>@Model.PedidosAprovados</p>
+                </div>
+                <div class="box-status-pedidos pendentes">
+                    <a href='@Url.Action("Visualizar","Cliente", new {status = 0})'><h4>Pendentes</h4></a>
+                    <p>@Model.PedidosPendentes</p>
+                </div>
+                <div class="box-status-pedidos reprovados">
+                    <a href='@Url.Action("Visualizar","Cliente", new {status = 2})'><h4>Reprovados</h4></a>
+                    <p>@Model.PedidosReprovados</p>
+                </div>
+                <div class="box-status-pedidos reprovados">
+                    <a href='@Url.Action("Visualizar","Cliente", new {status = 3})'><h4>Cancelados</h4></a>
+                    <p>@Model.PedidosCancelados</p>
+                </div>
+            </div>
+        </section>
+        }
+        else{
+        <div class="nenhuma-reserva">
+            <div>
+                <p class="info-vazio"><i class="fas fa-exclamation-circle"></i>Não há nenhuma reserva do salão em sua
+                    conta.</p>
+            </div>
+        </div>
+        }
+        <p class="divisoria-rodape"></p>
+        <div class="btn-minhaconta">
+            <p class="titulo-pedidos">Opções:</p>
+            <a asp-controller="Cliente" asp-action="Logoff" class="btn">Sair (logout)<i class="fas fa-angle-right"></i></a>
+            <a asp-controller="Cliente" asp-action="ExcluirConta" class="btn">Excluir conta<i class="fas fa-angle-right"></i></a>
+        </div>
+
+        <p class="divisoria-rodape"></p>
+</main>

@@ -1,0 +1,44 @@
+﻿@model ConsumirAPI.ViewModels.HomeViewModel
+<main>
+    <form action='@Url.Action("GetCep","Home")' method="POST" class="form">
+        <label for="cep">Entre com o CEP:</label>
+        <input type="tel" id="cep" name="cep"/>
+    </form>
+    @if (Model.Verificacao)
+    {
+    <table>
+        <tr>
+            <th>Cep:</th> <td>@Model.Cep</td>
+        </tr>
+
+        <tr>
+            <th>Logradouro:</th><td>@Model.Logradouro</td>
+        </tr>
+        <tr>
+            <th>Complemento:</th><td>@Model.Complemento</td>
+        </tr>
+        <tr>
+            <th>Bairro:</th><td>@Model.Bairro</td>
+        </tr>
+        <tr>
+            <th>Localidade:</th><td>@Model.Localidade</td>
+        </tr>
+        <tr>
+            <th>UF:</th><td>@Model.UF</td>
+        </tr>
+        <tr>
+            <th>Unidade:</th><td>@Model.Unidade</td>
+        </tr>
+        <tr>
+            <th>IBGE:</th><td>@Model.Ibge</td>
+        </tr>
+        <tr>
+            <th>GIA:</th><td>@Model.Gia</td>
+        </tr>
+    </table>
+    }
+    else
+    {
+        <p>Digite um CEP válido.</p>
+    }
+</main>
