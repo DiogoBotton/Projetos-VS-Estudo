@@ -1,0 +1,17 @@
+1° passo: criar o app react
+cmd: create-react-app my-app
+
+2° passo: instalar as dependências necessárias (nem todos são obrigatórios)
+cmd: npm install --save axios react-router react-router-dom react-bootstrap history normalize.css
+
+axios:  (Requisições)
+react-router, react-router-dom e history: (Rotas-Navigation de pages)
+normalize.css: (reseta css padrões de browsers, OPCIONAL)
+
+3° passo: instala bibliotecas de validação de dados (email, senha, etc)
+npm install --save formik yup
+
+
+Para instalar com TypeScript: 
+yarn create react-app my-app --template typescript
+npm create react-app my-app --template typescript
