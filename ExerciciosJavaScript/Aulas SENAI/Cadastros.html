@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <title>Usando Fetch para cadastrar usuário empresa na api</title>
+</head>
+
+<body>
+    <h2>Cadastro de Empresa</h2>
+    <div class="cep-container">
+        <div>
+            <label for="nome">Digite seu nome:</label>
+            <input class="form-control" type="text" id="nome" placeholder="Nome" />
+
+            <label for="email">Digite seu E-Mail:</label>
+            <input class="form-control" type="text" id="email" placeholder="E-Mail" />
+
+            <label for="cnpj">Digite o CNPJ da empresa:</label>
+            <input class="form-control" type="text" id="cnpj" placeholder="CNPJ" />
+
+            <label for="senha">Digite sua senha:</label>
+            <input class="form-control" type="password" id="senha" placeholder="**********" />
+
+        </div>
+
+        <div id="but-enviar">
+            <button class="btn btn-danger" onclick="cadastroEmpresa()">Cadastrar Empresa</button>
+        </div>
+    </div>
+
+    <p id="error"></p>
+</body>
+
+<style>
+    html,
+    body,
+    h2 {
+        margin: 0 auto;
+        padding: 0;
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+    input {
+        margin-bottom: 1em;
+    }
+
+    .cep-container>div {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        /* para deixar a div CENTRALIZADA (margin: 0 auto; width: 50%, 30%...*/
+        margin: 0 auto;
+        margin-top: 2em;
+        width: 30%;
+    }
+
+    #but-enviar {
+        text-align: center;
+    }
+</style>
+
+<script>
+    async function cadastroEmpresa() {
+        const data = {
+            nome: document.getElementById('nome').value,
+            email: document.getElementById('email').value,
+            cnpj: document.getElementById('cnpj').value,
+            senha: document.getElementById('senha').value
+        }
+
+        const init = {
+            // Declara o método da requisição
+            method: 'POST',
+            // Declara o cabeçalho da requisição (conteúdo que será enviado)
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            // Corpo da requisição, aqui fica o objeto que sera enviado. Converte para string para ser interpretado como json 
+            body: JSON.stringify(data)
+        }
+
+        // Inicializa a requisição com o init (o objeto de cadastro esta dentro do init)
+        await fetch("http://localhost:5000/api/Usuarios/cadastro/usuario-empresa", init)
+            .then(function () {
+                response.text()
+                    .then(function (result) {
+                        var jsonResposta = JSON.parse(result);
+                        console.log(jsonResposta);
+                    })
+            })
+            .catch(function (erro) {
+                console.error(erro); //retornar um erro 
+            });
+        // Digitando "thenc" aparece automaticamente a estrutura de Then e Catch
+    }
+</script>
+
+<!-- Bootstrap -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+    crossorigin="anonymous"></script>
+
+</html>

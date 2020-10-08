@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicios Aula</title>
+</head>
+
+<body>
+    <label for="sats">Nível de satisfação:</label><br>
+    <select id="sats">
+        <option>Ruim</option>
+        <option>Bom</option>
+        <option>Ótimo</option>
+    </select>
+    <button onclick=nivel()>Enviar</button>
+
+    <p id="demo"></p>
+
+    <script>
+        var sat = document.getElementById('sats').value;
+        // Pega apenas a opção "Ruim"
+        function nivel() {
+            if (sat == "Ruim")
+                document.getElementById('demo').innerHTML = `Sentimos muito por sua opnião ser "${sat}"`;
+            else if (sat == "Bom")
+                document.getElementById('demo').innerHTML = `Obrigado pela satisfação "${sat}"`;
+            else if (sat == "Ótimo")
+                document.getElementById('demo').innerHTML = `SHOW, obrigado pelo "${sat}"`;
+        }
+    </script>
+</body>
+
+</html>

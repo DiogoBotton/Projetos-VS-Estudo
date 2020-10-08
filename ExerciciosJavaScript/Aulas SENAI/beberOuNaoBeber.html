@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicios Aula</title>
+</head>
+
+<body>
+    <input type="text" id="idade" />
+    <input type="text" id="altura" />
+
+    <button onclick=beber()>Enviar</button>
+
+    <p id="demo">Sua idade</p>
+    <p id="demo1">Sua altura</p>
+    <p id="demo2">Beber ou não beber, eis a questão.</p>
+
+    <script>
+        function beber() {
+            var idade = parseInt(document.getElementById('idade').value);
+            var altura = parseFloat(document.getElementById('altura').value);
+
+            var x = `Idade ${idade}`
+            document.getElementById('demo').innerHTML = x;
+
+            var y = `Altura ${altura}`
+            document.getElementById('demo1').innerHTML = y;
+
+            if (idade >= 18)
+                document.getElementById('demo2').innerHTML = 'Você pode beber'
+            else
+                document.getElementById('demo2').innerHTML = 'Você NÃO pode beber'
+        }
+    </script>
+</body>
+
+</html>

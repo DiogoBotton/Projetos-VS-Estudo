@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicios Aula</title>
+</head>
+
+<body>
+    <p>Vale ou não a pena abastecer? Eis a questão!</p><br>
+    <input type="text" id="gas" />
+    <input type="text" id="alcool" />
+
+    <button onclick=alcool()>Enviar</button>
+    <p id="demo"></p>
+
+    <script>
+        function alcool() {
+            var gas = parseInt(document.getElementById('gas').value);
+            var alcool = parseFloat(document.getElementById('alcool').value);
+
+            if (alcool <= gas * 0.70)
+                document.getElementById('demo').innerHTML = 'Vale a pena'
+            else
+                document.getElementById('demo').innerHTML = 'Não vale a pena'
+        }
+    </script>
+</body>
+
+</html>
