@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <title>Usando Fetch</title>
+</head>
+
+<body>
+    <h2>Testando requisições à API com XMLHttpRequest</h2>
+    <div class="cep-container">
+        <div>
+            <label for="cep">Digite o CEP para pesquisa automatizada:</label>
+            <input class="form-control" type="text" id="cep" placeholder="Digite aqui o CEP" />
+
+            <label for="cidade">Digite sua cidade:</label>
+            <input class="form-control" type="text" id="cidade" placeholder="Localidade / Cidade" />
+
+            <label for="bairro">Digite seu bairro:</label>
+            <input class="form-control" type="text" id="bairro" placeholder="Bairro" />
+
+            <label for="logra">Digite sua rua:</label>
+            <input class="form-control" type="text" id="logra" placeholder="Logradouro / Rua" />
+
+            <label for="uf">Digite a unidade federativa (Estado):</label>
+            <input class="form-control" type="text" id="uf" placeholder="Uf" />
+        </div>
+
+        <div id="but-enviar">
+            <button class="btn btn-danger" onclick="fetchExCep()">Enviar</button>
+        </div>
+    </div>
+
+    <p id="error"></p>
+</body>
+
+<style>
+    html,
+    body,
+    h2 {
+        margin: 0 auto;
+        padding: 0;
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+    input {
+        margin-bottom: 1em;
+    }
+
+    .cep-container>div {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        /* para deixar a div CENTRALIZADA (margin: 0 auto; width: 50%, 30%...*/
+        margin: 0 auto;
+        margin-top: 2em;
+        width: 30%;
+    }
+
+    #but-enviar {
+        text-align: center;
+    }
+</style>
+
+<script>
+    // Exercício usando fetch do prof
+    async function fetchExCep() {
+        var cep = document.getElementById('cep').value;
+
+        const url = `https://viacep.com.br/ws/${cep}/json/`;
+        
+        // Inicializa a requisição
+        await fetch(url)
+            // Caso dê certo, converte a resposta da api para JSON
+            .then(resposta => resposta.json())
+            // O método json() não retorna na mesma hora, por isso necessita de outro .then para capturar o dado requisitado (resposta em objeto json) e mostra no console
+            .then(data => console.log(data))
+            // Caso dê algum erro na requisição (retorne 404 por exemplo e o erro precisa ser tratado, cai no boco catch)
+            .catch(erro => console.error(erro));
+    }
+
+    // Com fetchAPI resulta em erro de 'CorsPolicy'
+    async function fetchGetCEP() {
+        var cep = document.getElementById('cep').value;
+
+        const url = `https://viacep.com.br/ws/${cep}/json/`
+
+        const init = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        }
+
+        const response = await fetch(url, init)
+        const json = await response.json()
+        console.log(response)
+    }
+
+    async function exemploPostFetch(){
+        const loginData = {
+            email: "lalala@email.com",
+            senha: "abacaxi123"
+        }
+
+        const init = {
+            // Declara o método da requisição
+            method: 'POST',
+            // Declara o cabeçalho da requisição (conteúdo que será enviado)
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            // Corpo da requisição, aqui fica o objeto que sera enviado. Converte para string para ser interpretado como json (precisa mermo?)
+            body: JSON.stringify(loginData)
+        }
+
+        // Inicializa a requisição com o init (o objeto de login esta dentro do init)
+        await fetch("http//:localhost:5000/api/LoginAPI", init)
+    }
+
+    // Com XMLHttpRequest
+    async function xmlGetCEP() {
+        // Declara o objeto XMLHttpRequest
+        var http = new XMLHttpRequest();
+
+        // Pega o cep digitado pelo usuário
+        var cep = document.getElementById('cep').value;
+
+        // Declara a URL da API à ser acessada
+        const url = `https://viacep.com.br/ws/${cep}/json/`
+
+        // Declara variavel da resposta da API
+        var response;
+
+        // Inicializa / abre a requisição com open
+        // Parametros: método string, url string, booleano true caso queira método async (por padrão é true)
+        http.open('get', url, true);
+
+        // Envia a requisição
+        http.send();
+
+        // Espera até que a API retorne
+        http.onreadystatechange = function () {
+            // Caso status for 200 (Ok) e a resposta não for nula, faz a conversão de texto para objeto Json
+            if (http.status == 200 && http.responseText != null) {
+                response = JSON.parse(http.responseText);
+
+                // Acrescenta em todos os inputs os dados específicos
+                document.getElementById('cidade').value = response.localidade;
+                document.getElementById('bairro').value = response.bairro;
+                document.getElementById('logra').value = response.logradouro;
+                document.getElementById('uf').value = response.uf;
+            }
+            else {
+                alert('Houve um erro na requisição para a API.');
+            }
+        }
+    }
+</script>
+
+<!-- Bootstrap -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+    crossorigin="anonymous"></script>
+
+</html>

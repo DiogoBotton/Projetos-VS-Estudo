@@ -1,0 +1,128 @@
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="manipula">Eu sou a frase do exemplo. Serei alterada quando você clicar.</div>
+    <hr>
+    <h2>Altere a frase acima clicando nos botões</h2>
+
+    <div class="form">
+        <div>
+
+            <label for="fonteTamanho">Mude o tamanho da fonte</label><br>
+            <input type="range" id="fonteTamanho" min="1" max="25" onchange="mudaTamanhoFonte(this)" /><br><br>
+
+            <label for="back">Mude a cor do background</label><br>
+            <input type="color" onchange="mudaBackground(this)" id="back" /><br><br>
+
+            <label for="fonte">Mude a família</label><br>
+            <select id="fonte" onchange="mudaFamilia()">
+                <option value="roboto">roboto</option>
+                <option value="arial">arial</option>
+                <option value="verdana">verdana</option>
+            </select><br><br>
+        </div>
+        <div>
+
+            <label for="check">Remove e acrescenta borda</label><br>
+            <input type="checkbox" id="check" value="Coloca borda" onclick="colocaBorder()" /><br><br>
+
+            <label for="fonte">Muda cor da borda</label><br>
+            <input type="color" value="Muda a cor da borda" onchange="corBorder(this)" /><br><br>
+
+            <label for="fonte">Esconde Div</label><br>
+            <input type="button" value="Esconde a div" onclick="escondeDiv()" /><br><br>
+
+            <label for="fonte">Mude a cor da fonte</label><br>
+            <input type="color" onchange="mudaCor(this)" />
+        </div>
+    </div>
+
+</body>
+
+<style>
+    html,
+    body,
+    h2 {
+        margin: 0;
+        padding: 0;
+    }
+
+    h2 {
+        text-align: center;
+    }
+    
+    .form {
+        display: flex;
+        justify-content: space-around;
+        margin-top: em;
+    }
+
+    #manipula {
+        height: 50px;
+        line-height: 50px;
+        color: yellow;
+        font-size: 10pt;
+        background-color: red;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+</style>
+
+<script>
+    // Para a cor da borda permanecer mesmo se retira-lá
+    var color = "#0000ff";
+    var borda = false;
+
+    function mudaCor(cor) {
+        document.getElementById("manipula").style.color = cor.value;
+    }
+
+    function mudaTamanhoFonte(tamanho) {
+        document.getElementById("manipula").style.fontSize = tamanho.value + "px";
+        console.log(document.getElementById("manipula").style.fontSize)
+    }
+
+    function mudaBackground(corBackGround) {
+        document.getElementById("manipula").style.backgroundColor = corBackGround.value;
+    }
+
+    function mudaFamilia() {
+        document.getElementById("manipula").style.fontFamily = document.getElementById("fonte").value;
+    }
+
+    function escondeDiv() {
+        var el = document.getElementById("manipula");
+
+        if (el.style.display != 'none') {
+            el.style.display = 'none';
+        }
+        else if (el.style.display != 'block') {
+            el.style.display = 'block';
+        }
+    }
+
+    function colocaBorder() {
+        // Altera bool borda para dizer se colocou borda ou tirou
+        borda = !borda;
+        document.getElementById("manipula").style.border = document.getElementById("check").checked == true ? `2px solid ${color}` : "0px";
+    }
+
+    function corBorder(cor) {
+        // Verifica antes se a borda esta ativa para modificar sua cor
+        if (borda) {
+            color = cor.value;
+            document.getElementById("manipula").style.border = "2px solid" + cor.value;
+        }
+    }
+</script>
+
+</html>

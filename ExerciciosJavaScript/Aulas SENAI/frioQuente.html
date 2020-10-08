@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicios Aula</title>
+</head>
+
+<body>
+    <button onclick=blusa()>Clique</button>
+
+    <p id="demo"></p>
+
+    <script>
+        var tempo = {
+            temperatura: 22,
+        }
+
+        function blusa() {
+            var b = confirm('Você esta usando blusa?');
+
+            if (tempo.temperatura >= 23) {
+                if (b)
+                    document.getElementById('demo').innerHTML = 'Está fresco, você não precisa de blusa'
+                else
+                    document.getElementById('demo').innerHTML = 'Está fresco'
+            }
+            else{
+                if (b)
+                    document.getElementById('demo').innerHTML = 'Está frio e você esta vestindo blusa!'
+                else
+                    document.getElementById('demo').innerHTML = 'Está frio e você NÃO esta de blusa'
+            }
+        }
+    </script>
+</body>
+
+</html>
