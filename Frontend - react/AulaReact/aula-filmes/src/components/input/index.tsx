@@ -1,6 +1,7 @@
 import React, {InputHTMLAttributes} from 'react';
 import './style.css'
 
+// É igual uma interface de POO (Orientado a objetos), onde será colocado todas as propriedades que deverão ser usadas pelo componente
 interface InputProps extends InputHTMLAttributes<HTMLInputElement>{
     label: string;
     name: string;

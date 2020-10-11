@@ -10,7 +10,7 @@ import '../../assets/styles/global.css'
 function Home() {
   return (
     <div>
-      <Header description="Conheça nossa Coletânea" />
+      <Header description="Conheça nossa Coletânea" text="Olá, tudo bem?"/>
 
         <h1>Monte sua coletânea de filmes...</h1>
         <div className="intro">
