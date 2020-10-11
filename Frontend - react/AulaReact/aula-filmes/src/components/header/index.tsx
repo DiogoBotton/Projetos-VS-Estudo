@@ -6,7 +6,8 @@ import '../../assets/styles/global.css'
 
 // Interface typescript
 interface HeaderProps {
-  description: string
+  description: string;
+  text?: string;
 }
 
 // Arrow Function que usa uma interface que vira com propriedades (props) (typescript) FC: FunctionComponent
@@ -24,6 +25,10 @@ const Header: React.FC<HeaderProps> = (props) => {
             </ul>
           </nav>
           <h3>{props.description}</h3>
+          
+          {/* PROPS NÃO OBRIGATÓRIA*/}
+          {/* Verifica se a props TEXT existe E se o paragrafo com a props text foi chamada em alguma página */}
+          {props.text && <p>{props.text}</p>}
         </div>
       </header>
     </div>
