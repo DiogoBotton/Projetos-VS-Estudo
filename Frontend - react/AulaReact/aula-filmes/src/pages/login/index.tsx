@@ -1,13 +1,50 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Header from '../../components/header/index';
 import Footer from '../../components/footer/index';
 import Input from '../../components/input/index';
 import Button from '../../components/button/index'
+import { useHistory } from 'react-router-dom';
 import './style.css';
 
 function Login() {
-  // O useState modifica o estado de algum objeto/componente da página quando o usuário faz algum tipo de ação
-  const [count, setCount] = useState(0);
+  let history = useHistory();
+
+  //const initFormData = { email: '', senha: '' };
+  //const [formData, setFormData] = useState(initFormData);
+
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
+
+  const login = () => {
+    const login = {
+      email: email,
+      senha: senha
+    };
+
+    const init = {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(login)
+    }
+
+    fetch('http://localhost:5000/api/conta/login', init)
+      .then(resp => resp.json())
+      .then(data => {
+        // Verifica se a propriedade token é diferente de indefinida (se a propriedade existe no retorno do json)
+        if (data.token !== undefined) {
+          localStorage.setItem('token-usuario', data.token)
+          // Envia (empurra) pra uma página específica
+          history.push('/');
+        }
+        else {
+          // Erro caso email ou senha sejam inválidos
+          alert(data)
+        }
+      })
+      .catch(erro => console.log(erro))
+  }
 
   return (
     <div>
@@ -15,11 +52,17 @@ function Login() {
       <div className="centro">
         <div className="login">
           <h1>Login</h1>
+          {/*Target seria o atributo que chama o evento*/}
+          <form onSubmit={event => {
+            event.preventDefault()
+            login()
+          }}>
+            <Input type="text" label="Email" name="email" onChange={e => setEmail(e.target.value)} />
+            <Input type="password" label="Senha" name="senha" onChange={e => setSenha(e.target.value)} />
 
-          <Input type="text" label="Email" name="email" />
-          <Input type="password" label="Senha" name="senha" />
+            <Button name="Enviar" type="submit" />
+          </form>
 
-          <Button name="Enviar" onClick={() => setCount(count + 1)}/>
         </div>
       </div>
       <Footer />
