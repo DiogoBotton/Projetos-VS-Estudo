@@ -17,7 +17,7 @@ function Cadastro() {
           <Input type="text" label="Email" name="email" />
           <Input type="password" label="Senha" name="senha" />
 
-          {/* <Button name="Enviar" /> */}
+          <Button name="Enviar"/>
         </div>
       </div>
 

@@ -52,8 +52,10 @@ function Login() {
       <div className="centro">
         <div className="login">
           <h1>Login</h1>
-          {/*Target seria o atributo que chama o evento*/}
+          {/*Target seria o atributo que aciona o evento, 
+            Event, abre o componente que foi acionado o evento em si, para que possa ser manipulado pelo target*/}
           <form onSubmit={event => {
+            // Padrão de comportamento (prevenindo o comportamento padrão de eventos)
             event.preventDefault()
             login()
           }}>
