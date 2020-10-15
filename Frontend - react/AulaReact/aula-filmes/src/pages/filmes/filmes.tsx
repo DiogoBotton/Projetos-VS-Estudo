@@ -7,7 +7,7 @@ const Filmes = () => {
     // Explicação: 1° paramêtro se refere à VARIAVEL que será armazenado algum dado, e o 2° paramêtro ao MÉTODO que ATUALIZARÁ o dado.
 
     // Variavel com matriz de filmes, com o método que atualizará a lista
-    const [filmes, updateFilmes] = useState({});
+    const [filmes, updateFilmes] = useState([]);
 
     // Variavel que define se a página esta carregando
     const [isLoading, updateIsLoading] = useState(true)
@@ -16,6 +16,7 @@ const Filmes = () => {
     const [erro, updateErro] = useState('');
 
     // O useEffect é parecido com o componentDidMount (executa após a renderização do componente/página), e outros...
+    // 3 fases: Quando monta, quando altera, e quando desfaz
 
     // 1° paramêtro seria a função à ser executada, o 2° paramêtro seria a qual condição será executado
     // com [] (matriz vazia) significa que irá ser executado apenas uma vez (quando a página for carregada)
