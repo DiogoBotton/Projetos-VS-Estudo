@@ -1,15 +1,14 @@
-import React, {InputHTMLAttributes} from 'react';
+import React, {ButtonHTMLAttributes} from 'react';
 import './style.css'
 
-interface ButtonProps extends InputHTMLAttributes<HTMLInputElement>{
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
     name: string;
-    onClick: any;
 }
 
-const Button:React.FC<ButtonProps> = ({name, onClick}) => {
+const Button:React.FC<ButtonProps> = ({name, ...rest}) => {
   return (
     <div>
-        <button className="btn-enviar" onClick={onClick}>{name}</button>
+        <button className="btn-enviar" {...rest}>{name}</button>
     </div>
   );
 }

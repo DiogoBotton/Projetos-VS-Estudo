@@ -119,7 +119,7 @@
             headers: {
                 'Content-Type': 'application/json'
             },
-            // Corpo da requisição, aqui fica o objeto que sera enviado. Converte para string para ser interpretado como json (precisa mermo?)
+            // Corpo da requisição, aqui fica o objeto que sera enviado. Converte para string para ser interpretado como json (precisa mermo?) PRECISA, Fetch não converte automatico, axios sim
             body: JSON.stringify(loginData)
         }
 
