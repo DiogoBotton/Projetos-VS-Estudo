@@ -16,5 +16,14 @@ Para instalar com TypeScript:
 yarn create react-app my-app --template typescript
 npm create react-app my-app --template typescript
 
+Bibliotecas recomendadas:
+yarn add @types/styled-components -D
+yarn add axios --save
+yarn add @types/axios -D
+yarn add @types/yup -D
+yarn add @unform/core -D
+yarn add @unform/web -D
+
 Rotas precisará desta dependência:
-yarn add @types/react-router-dom --save 
+yarn add @types/react-router-dom --save
+yarn add @types/react-router-dom -D
