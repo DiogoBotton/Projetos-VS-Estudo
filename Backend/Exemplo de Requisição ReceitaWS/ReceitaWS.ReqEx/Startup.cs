@@ -12,6 +12,7 @@ namespace ReceitaWS.ReqEx
 {
     public class Startup
     {
+        // Teste 2
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
